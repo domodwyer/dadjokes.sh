@@ -22,6 +22,7 @@ log() { echo "==> ${*}" 1>&2; }
 echo '#!/usr/bin/env bash'
 echo
 echo '# Automatically generated with dadjokes.sh'
+echo '# https://github.com/domodwyer/dadjokes.sh'
 echo
 echo 'set -euo pipefail'
 
@@ -37,6 +38,7 @@ for N_PAGE in {0..100}; do
 	# Fetch a page of jokes
 	LIST=$(
 		curl -s -H "Accept: application/json" \
+		-H "User-Agent: dadjokes.sh (https://github.com/domodwyer/dadjokes.sh)" \
 		"https://icanhazdadjoke.com/search?page=$N_PAGE&limit=30" |
 		jq '.results[].joke | @base64' -r
 	)
